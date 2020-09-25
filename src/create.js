@@ -3,8 +3,7 @@ import * as domStuff from "./domStuff";
 function createMenu(title, id, dropDownArray) {
   domStuff.createInitialHTML(title, id);
   dropDownArray.forEach((dropDownItem) => {
-    const { dropDownText } = dropDownItem;
-    domStuff.pushMenuItem(id, title, dropDownText);
+    domStuff.pushMenuItem(id, title, dropDownItem);
   });
   const proto = {
     title,

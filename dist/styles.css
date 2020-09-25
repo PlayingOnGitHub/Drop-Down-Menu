@@ -1,3 +1,40 @@
+@keyframes drop-down {
+    0% {
+        margin-top: -10px;
+        opacity: 0.0;
+    }
+    100% {
+        margin-top:0px;
+        opacity: 1.0;
+    }
+}
+
+@keyframes pull-up {
+    0% {
+        margin-top:0px;
+        opacity: 1.0;
+    }
+    100% {
+        margin-top: -10px;
+        opacity: 0.0;
+    }
+}
+
+#MOVIES-drop-down-animate-down {
+    animation-name: drop-down;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+#MOVIES-drop-down-animate-up {
+    animation-name: pull-up;
+    animation-duration: 0.08s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+
 .drop-down-list {
     list-style-type: none;
     margin-block-start: 1em;
@@ -80,6 +117,7 @@ body {
     height: auto;
     color: white;
     margin-top: 5px;
+    display: none;
 }
 
 .drop-down-list {
@@ -123,3 +161,4 @@ body {
     background-color: #474b4f66;
     cursor: pointer;
 }
+

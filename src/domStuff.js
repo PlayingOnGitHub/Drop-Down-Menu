@@ -1,5 +1,41 @@
 import * as create from "./create";
 
+function changeDisplay() {
+  const myId = this;
+  const animatedPullUpMenuId = `${myId}drop-down-animate-up`;
+  const dropDownWrapper = document.getElementById(animatedPullUpMenuId);
+  if (dropDownWrapper) {
+    dropDownWrapper.style.display = "none";
+  }
+}
+
+function animateMenu() {
+  const myId = this.id;
+  const dropDownMenuId = `${myId}-drop-down`;
+  const animatedDropDownMenuId = `${myId}-drop-down-animate-down`;
+  const animatedPullUpMenuId = `${myId}-drop-down-animate-up`;
+
+  const dropDownMenu = document.getElementById(dropDownMenuId);
+  const animatedDropDownMenu = document.getElementById(animatedDropDownMenuId);
+  const animatedPullUpMenu = document.getElementById(animatedPullUpMenuId);
+  if (!dropDownMenu) {
+    if (!animatedPullUpMenu) {
+      animatedDropDownMenu.id = animatedPullUpMenuId;
+      animatedDropDownMenu.style.display = "block";
+      return;
+    }
+    animatedPullUpMenu.id = animatedDropDownMenuId;
+    animatedPullUpMenu.addEventListener(
+      "animationend",
+      changeDisplay.bind(myId),
+      true
+    );
+  } else {
+    dropDownMenu.id = animatedDropDownMenuId;
+    dropDownMenu.style.display = "block";
+  }
+}
+
 function createInitialHTML(title, id) {
   const startingPoint = document.getElementById(id);
   const menuWrapper = startingPoint.appendChild(
@@ -13,7 +49,12 @@ function createInitialHTML(title, id) {
   );
   parentText.textContent = title;
   const dropDownIconWrapper = parentList.appendChild(
-    create.element("div", "class", "drop-down-icon-wrapper", "", "id", id)
+    create.element("div", "class", "drop-down-icon-wrapper", "", "id", title)
+  );
+  dropDownIconWrapper.addEventListener(
+    "click",
+    animateMenu.bind(dropDownIconWrapper),
+    true
   );
   const dropDownIconLine1 = dropDownIconWrapper.appendChild(
     create.element("div", "class", "drop-down-icon-line-1")
@@ -43,12 +84,10 @@ function createInitialHTML(title, id) {
   );
 }
 
-function pushMenuItem(id, title, dropDownText) {
+function pushMenuItem(id, title, dropDownText, behavior) {
   const startingPoint = document.getElementById(`${title}-drop-down-list`);
-  const firstItem = document.getElementById(`${title}-first-drop-down-item`);
-  const lastItem = document.getElementById(`${title}-last-drop-down-item`);
 
-  if (!firstItem) {
+  if (behavior === 1) {
     const newMenuItem = startingPoint.appendChild(
       create.element(
         "li",
@@ -60,9 +99,7 @@ function pushMenuItem(id, title, dropDownText) {
       )
     );
     newMenuItem.textContent = dropDownText;
-    return;
-  }
-  if (!lastItem) {
+  } else if (behavior === 2) {
     const newMenuItem = startingPoint.appendChild(
       create.element(
         "li",
@@ -74,29 +111,12 @@ function pushMenuItem(id, title, dropDownText) {
       )
     );
     newMenuItem.textContent = dropDownText;
-    return;
+  } else {
+    const newMenuItem = startingPoint.appendChild(
+      create.element("li", "class", "drop-down-text", "", "id", dropDownText)
+    );
+    newMenuItem.textContent = dropDownText;
   }
-  const newMenuItem = lastItem.prepend(
-    create.element("li", "class", "drop-down-text", "", "id", dropDownText)
-  );
-  newMenuItem.textContent = dropDownText;
 }
-
-/* <nav class="menu-wrapper">
-                <ul class="parent-list">
-                    <li class="parent-text">MOVIES</li>
-                    <div class="drop-down-icon-wrapper" id="MOVIES">
-                        <div class="drop-down-icon-line-1"></div>
-                        <div class="drop-down-icon-line-2"></div>
-                    </div>
-                </ul>
-                <div class="drop-down-wrapper" id="MOVIES-drop-down">
-                    <ul class="drop-down-list">
-                        <li class="drop-down-text first-drop-down-item">
-                            Family Guy Movie
-                        </li>
-                    </ul>
-                </div>
-            </nav> */
 
 export { createInitialHTML, pushMenuItem };

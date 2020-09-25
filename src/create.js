@@ -2,8 +2,15 @@ import * as domStuff from "./domStuff";
 
 function createMenu(title, id, dropDownArray) {
   domStuff.createInitialHTML(title, id);
-  dropDownArray.forEach((dropDownItem) => {
-    domStuff.pushMenuItem(id, title, dropDownItem);
+  dropDownArray.forEach((dropDownItem, myIndex) => {
+    let behavior = 0;
+    if (myIndex === 0) {
+      behavior = 1;
+    }
+    if (dropDownArray.length - 1 === myIndex) {
+      behavior = 2;
+    }
+    domStuff.pushMenuItem(id, title, dropDownItem, behavior);
   });
   const proto = {
     title,

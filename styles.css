@@ -1,0 +1,126 @@
+.drop-down-list {
+    list-style-type: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+}
+
+body {
+    background-color: #222629;
+}
+
+.menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 198px;
+}
+
+.parent-list {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 0px;
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0;
+}
+
+.parent-text {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial;
+    display: block;
+    margin-left: 53px;
+    color: #61892F;
+}
+
+.drop-down-icon-wrapper {
+    display: block;
+    width: 13px;
+    height: 30px;
+    margin-left: 6px;
+    margin-top: 10px;
+}
+
+.drop-down-icon-line-1 {
+    position: absolute;
+    height: 2px;
+    width: 9px;
+    background-color: #6B6E70;
+    transform: rotate(135deg) translate(-50%, -50%);
+    margin-top: 14.5px;
+    margin-left: -0.2px;
+}
+
+.drop-down-icon-line-2 {
+    position: absolute;
+    height: 2px;
+    width: 9px;
+    background-color: #6B6E70;
+    transform: rotate(45deg) translate(-50%, -50%);
+    margin-top: 16px;
+    margin-left: 0.8px;
+}
+
+.drop-down-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    color: white;
+    margin-top: 5px;
+    display: none;
+}
+
+.drop-down-list {
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    border-radius: 0px;
+}
+
+.drop-down-icon-wrapper:hover {
+    cursor: pointer;
+}
+
+.drop-down-icon-wrapper:hover > .drop-down-icon-line-1, 
+.drop-down-icon-wrapper:hover > .drop-down-icon-line-2 {
+    background-color: #474B4F;
+}
+
+.first-drop-down-item {
+    padding-top: 15px;
+    border-top-left-radius: 3.5px;
+    border-top-right-radius: 3.5px;
+}
+
+.drop-down-text {
+    width: auto;
+    height: 37px;
+    padding-left: 15px;
+    background-color: #474b4fc7;
+}
+
+.last-drop-down-item {
+    border-bottom-right-radius: 3.5px;
+    border-bottom-left-radius: 3.5px;
+}
+
+.drop-down-text:hover {
+    background-color: #474b4f66;
+    cursor: pointer;
+}

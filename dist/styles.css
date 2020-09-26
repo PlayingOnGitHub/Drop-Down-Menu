@@ -148,7 +148,9 @@ body {
 .drop-down-text {
     width: auto;
     height: 37px;
-    padding-left: 15px;
+    padding-left: 18px;
+    padding-top: 22px;
+    padding-bottom: 5px;
     background-color: #474b4fc7;
 }
 

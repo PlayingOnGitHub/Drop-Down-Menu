@@ -1,6 +1,6 @@
 {
   "name": "@playingongithub/drop-down-menu",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Drop Down Menu",
   "main": "index.js",
   "scripts": {

@@ -1,11 +1,21 @@
 import * as create from "./create";
 
 function changeDisplay() {
-  const myId = this;
-  const animatedPullUpMenuId = `${myId}drop-down-animate-up`;
-  const dropDownWrapper = document.getElementById(animatedPullUpMenuId);
-  if (dropDownWrapper) {
-    dropDownWrapper.style.display = "none";
+  const myElement = this;
+  const myId = myElement.id;
+  const realId = myId.split("-drop-down-animate-up");
+  if (realId) {
+    const dropDownWrapper = document.getElementById(
+      `${realId[0]}-drop-down-animate-up`
+    );
+    if (dropDownWrapper) {
+      myElement.removeEventListener(
+        "animationend",
+        changeDisplay.bind(this),
+        true
+      );
+      dropDownWrapper.style.display = "none";
+    }
   }
 }
 
@@ -14,22 +24,22 @@ function animateMenu() {
   const dropDownMenuId = `${myId}-drop-down`;
   const animatedDropDownMenuId = `${myId}-drop-down-animate-down`;
   const animatedPullUpMenuId = `${myId}-drop-down-animate-up`;
-
   const dropDownMenu = document.getElementById(dropDownMenuId);
   const animatedDropDownMenu = document.getElementById(animatedDropDownMenuId);
   const animatedPullUpMenu = document.getElementById(animatedPullUpMenuId);
+
   if (!dropDownMenu) {
     if (!animatedPullUpMenu) {
       animatedDropDownMenu.id = animatedPullUpMenuId;
-      animatedDropDownMenu.style.display = "block";
+      animatedDropDownMenu.addEventListener(
+        "animationend",
+        changeDisplay.bind(this),
+        true
+      );
       return;
     }
     animatedPullUpMenu.id = animatedDropDownMenuId;
-    animatedPullUpMenu.addEventListener(
-      "animationend",
-      changeDisplay.bind(myId),
-      true
-    );
+    animatedPullUpMenu.style.display = "block";
   } else {
     dropDownMenu.id = animatedDropDownMenuId;
     dropDownMenu.style.display = "block";
